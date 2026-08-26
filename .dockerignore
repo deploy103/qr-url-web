@@ -1,0 +1,20 @@
+# Build output and local runtime state never belong in the build context.
+dist/
+data/
+*.db
+*.db-wal
+*.db-shm
+
+.git/
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+
+# Documentation and deployment files are not needed to compile the binary.
+docs/
+deploy/
+*.md
+compose*.yaml
+Dockerfile
+.dockerignore

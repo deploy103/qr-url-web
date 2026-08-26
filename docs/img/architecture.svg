@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" width="960" height="380" role="img" aria-label="Architecture: Browser to Nginx to the qrurl Go binary to SQLite, with the internal package layers">
+  <style>
+    .s { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, sans-serif; }
+    .m { font-family: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace; }
+  </style>
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#39414d"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="959" height="379" rx="14" fill="#0f1216" stroke="#262c35"/>
+
+  <text class="s" x="24" y="33" font-size="15" font-weight="600" fill="#e8ecf2">Architecture</text>
+  <text class="s" x="24" y="54" font-size="11" fill="#78828f">정적 바이너리 하나 · 외부 런타임 의존성 없음 · QR 인코딩까지 자체 구현</text>
+
+  <!-- Browser -->
+  <rect x="24" y="174" width="120" height="88" rx="10" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="84" y="212" font-size="12.5" font-weight="600" fill="#e8ecf2" text-anchor="middle">Browser</text>
+  <text class="s" x="84" y="231" font-size="9.5" fill="#78828f" text-anchor="middle">QR 스캔 · 관리 콘솔</text>
+
+  <line x1="148" y1="218" x2="196" y2="218" stroke="#39414d" stroke-width="1.5" marker-end="url(#arw)"/>
+  <text class="m" x="172" y="207" font-size="9" fill="#78828f" text-anchor="middle">443</text>
+
+  <!-- Nginx -->
+  <rect x="200" y="174" width="120" height="88" rx="10" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="260" y="206" font-size="12.5" font-weight="600" fill="#e8ecf2" text-anchor="middle">Nginx</text>
+  <text class="s" x="260" y="225" font-size="9.5" fill="#78828f" text-anchor="middle">TLS 종료</text>
+  <text class="s" x="260" y="241" font-size="9.5" fill="#78828f" text-anchor="middle">리버스 프록시</text>
+
+  <line x1="324" y1="218" x2="372" y2="218" stroke="#39414d" stroke-width="1.5" marker-end="url(#arw)"/>
+  <text class="m" x="348" y="207" font-size="9" fill="#78828f" text-anchor="middle">:8080</text>
+
+  <!-- qrurl binary -->
+  <rect x="376" y="84" width="376" height="268" rx="12" fill="#12161b" stroke="#39414d"/>
+  <text class="m" x="392" y="107" font-size="10.5" fill="#6f95ff">qrurl</text>
+  <text class="s" x="430" y="107" font-size="10.5" fill="#78828f">— 단일 정적 바이너리 (CGO 없음)</text>
+
+  <rect x="392" y="118" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="137" font-size="10.5" fill="#6f95ff">web/</text>
+  <text class="s" x="486" y="137" font-size="10" fill="#a2acbb">템플릿 · 정적 자산 (embed)</text>
+
+  <rect x="392" y="156" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="175" font-size="10.5" fill="#6f95ff">server/</text>
+  <text class="s" x="486" y="175" font-size="10" fill="#a2acbb">라우팅 · 세션 · CSRF</text>
+
+  <rect x="392" y="194" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="213" font-size="10.5" fill="#6f95ff">httpx/</text>
+  <text class="s" x="486" y="213" font-size="10" fill="#a2acbb">신뢰 프록시 · rate limit</text>
+
+  <rect x="392" y="232" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="251" font-size="10.5" fill="#6f95ff">qr/</text>
+  <text class="s" x="486" y="251" font-size="10" fill="#a2acbb">QR 인코더 (자체 구현)</text>
+
+  <rect x="392" y="270" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="289" font-size="10.5" fill="#6f95ff">store/</text>
+  <text class="s" x="486" y="289" font-size="10" fill="#a2acbb">SQLite · 마이그레이션</text>
+
+  <rect x="392" y="308" width="344" height="30" rx="7" fill="#171b21" stroke="#262c35"/>
+  <text class="m" x="404" y="327" font-size="10.5" fill="#6f95ff">cleanup/</text>
+  <text class="s" x="486" y="327" font-size="10" fill="#a2acbb">만료 정리 워커</text>
+
+  <line x1="756" y1="218" x2="788" y2="218" stroke="#39414d" stroke-width="1.5" marker-end="url(#arw)"/>
+
+  <!-- SQLite -->
+  <rect x="792" y="174" width="144" height="88" rx="10" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="864" y="206" font-size="12.5" font-weight="600" fill="#e8ecf2" text-anchor="middle">SQLite</text>
+  <text class="m" x="864" y="225" font-size="9.5" fill="#78828f" text-anchor="middle">WAL</text>
+  <text class="s" x="864" y="241" font-size="9.5" fill="#78828f" text-anchor="middle">순수 Go 드라이버</text>
+</svg>

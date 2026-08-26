@@ -1,0 +1,59 @@
+# Local development stack.
+#
+#   docker compose -f compose.dev.yaml up -d --build
+#   open http://127.0.0.1:8013/
+#
+# Unlike the production file this one creates its own network, publishes the
+# port on the loopback and turns off the cookie hardening that needs HTTPS.
+
+services:
+  qr-url:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: dev
+    image: qr-url:dev
+    container_name: qr-url-dev
+    restart: unless-stopped
+    init: true
+
+    environment:
+      QRURL_ADDR: 0.0.0.0:8013
+      QRURL_BASE_URL: http://127.0.0.1:8013
+      QRURL_DATA_DIR: /data
+      QRURL_TIMEZONE: Asia/Seoul
+      # Plain HTTP locally, so neither the Secure cookie flag nor HSTS applies.
+      QRURL_SECURE_COOKIE: "false"
+      QRURL_HSTS: "false"
+      QRURL_TRUST_PROXY: "false"
+      QRURL_PUBLIC_QR: "true"
+      QRURL_CLEANUP_INTERVAL: 1m
+      QRURL_BACKUP_INTERVAL: "0"
+      QRURL_LOG_LEVEL: debug
+      QRURL_LOG_FORMAT: text
+      QRURL_ADMIN_USERNAME: ${QRURL_ADMIN_USERNAME:-admin}
+      QRURL_ADMIN_PASSWORD: ${QRURL_ADMIN_PASSWORD:-DevPassword12345}
+
+    ports:
+      - "127.0.0.1:8013:8013"
+
+    volumes:
+      - qr-url-dev-data:/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8013/health | grep -q '\"status\":\"ok\"'"]
+      interval: 15s
+      timeout: 5s
+      start_period: 5s
+      retries: 3
+
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+
+volumes:
+  qr-url-dev-data:
+    name: qr-url-dev-data

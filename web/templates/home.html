@@ -1,0 +1,98 @@
+{{define "content"}}
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">QR &amp; URL</span>
+    </a>
+    <nav class="topbar-nav">
+      <a class="btn btn-ghost" href="/adminpage">관리자</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page page-home">
+  <section class="hero">
+    <h1>QR 코드 생성기</h1>
+    <p>입력한 내용을 그대로 QR 코드에 담습니다. 외부 QR 서비스를 거치지 않고 이 서버에서 직접 만듭니다.</p>
+  </section>
+
+  {{if .PublicQR}}
+  <div class="generator" data-max-payload="{{.MaxPayload}}">
+    <form class="card generator-form" id="qr-form" autocomplete="off">
+      <fieldset class="field">
+        <legend>종류</legend>
+        <div class="segmented" role="radiogroup" aria-label="QR 종류">
+          <label class="segmented-item">
+            <input type="radio" name="kind" value="url" checked>
+            <span>URL</span>
+          </label>
+          <label class="segmented-item">
+            <input type="radio" name="kind" value="text">
+            <span>텍스트</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="content">내용</label>
+        <textarea id="content" name="content" rows="3" spellcheck="false"
+                  placeholder="https://example.com/abc?a=1&amp;b=2"></textarea>
+        <p class="field-hint"><span id="content-count">0</span> / {{.MaxPayload}} 바이트</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="ec">오류 정정 레벨</label>
+          <select id="ec" name="ec">
+            {{range .Levels}}<option value="{{.Value}}"{{if eq .Value "M"}} selected{{end}}>{{.Label}}</option>{{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="size">크기 (px)</label>
+          <select id="size" name="size">
+            {{range .Sizes}}<option value="{{.}}"{{if eq . 512}} selected{{end}}>{{.}} × {{.}}</option>{{end}}
+          </select>
+        </div>
+      </div>
+
+      <p class="alert alert-info">
+        여기서 만드는 QR은 서버에 저장되지 않습니다. 만료 기간이 필요한 QR과 단축 URL은
+        <a href="/adminpage">관리자 페이지</a>에서 만들어 주세요.
+      </p>
+    </form>
+
+    <div class="card preview-card">
+      <div class="preview-frame">
+        <img id="qr-preview" alt="생성된 QR 코드 미리보기" width="320" height="320" hidden>
+        <p class="preview-empty" id="preview-empty">내용을 입력하면 QR이 나타납니다.</p>
+        <p class="preview-error" id="preview-error" role="alert" hidden></p>
+      </div>
+      <dl class="preview-meta">
+        <div><dt>페이로드</dt><dd id="preview-payload">-</dd></div>
+      </dl>
+      <div class="preview-actions">
+        <a class="btn btn-primary" id="download-png" href="#" download>PNG 다운로드</a>
+        <a class="btn" id="download-svg" href="#" download>SVG 다운로드</a>
+        <button class="btn btn-ghost" id="copy-payload" type="button">페이로드 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="card notice-card">
+    <h2>QR 만료에 대해 알아두세요</h2>
+    <ul class="notice-list">
+      <li><strong>Direct URL QR / Text QR</strong>은 내용 자체가 이미지 안에 들어갑니다. 이미 내려받거나 인쇄한 QR은 서버에서 무효화할 수 없습니다.</li>
+      <li><strong>Short URL QR</strong>은 <code>{{.BaseURL}}/001</code> 형태의 주소를 담습니다. 서버에서 만료·비활성화하면 실제 접속도 즉시 차단됩니다.</li>
+      <li>접속 자체를 나중에 끊어야 한다면 반드시 Short URL QR을 사용하세요.</li>
+    </ul>
+  </section>
+  {{else}}
+  <section class="card notice-card">
+    <h2>공개 QR 생성이 꺼져 있습니다</h2>
+    <p><a href="/adminpage">관리자 페이지</a>에서 로그인한 뒤 QR을 생성해 주세요.</p>
+  </section>
+  {{end}}
+</main>
+<script src="{{asset "home.js"}}" defer></script>
+{{end}}

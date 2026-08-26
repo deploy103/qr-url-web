@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 370" width="960" height="370" role="img" aria-label="Three QR kinds: Direct URL QR and Text QR embed the value itself and cannot be revoked, while Short URL QR embeds a short link and can be blocked by the server">
+  <style>
+    .s { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, sans-serif; }
+    .m { font-family: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace; }
+  </style>
+
+  <rect x="0.5" y="0.5" width="959" height="369" rx="14" fill="#0f1216" stroke="#262c35"/>
+
+  <text class="s" x="24" y="33" font-size="15" font-weight="600" fill="#e8ecf2">QR 종류와 만료의 차이</text>
+  <text class="s" x="24" y="54" font-size="11" fill="#78828f">입력한 값이 그대로 payload가 됩니다. 서버가 접속을 끊을 수 있는 건 Short URL QR 뿐입니다.</text>
+
+  <!-- Direct URL QR -->
+  <rect x="24" y="80" width="290" height="176" rx="12" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="40" y="104" font-size="13" font-weight="600" fill="#e8ecf2">Direct URL QR</text>
+  <text class="s" x="40" y="124" font-size="9" fill="#78828f">입력</text>
+  <text class="m" x="40" y="140" font-size="10" fill="#a2acbb">https://food.hsoc.kr</text>
+  <text class="s" x="40" y="162" font-size="9" fill="#78828f">QR payload</text>
+  <text class="m" x="40" y="179" font-size="10.5" fill="#6f95ff">https://food.hsoc.kr</text>
+  <line x1="40" y1="195" x2="298" y2="195" stroke="#262c35"/>
+  <rect x="40" y="206" width="180" height="26" rx="13" fill="#3a1a1a"/>
+  <text class="s" x="54" y="223" font-size="10" font-weight="600" fill="#ff8080">✗  서버에서 차단 불가</text>
+
+  <!-- Text QR -->
+  <rect x="335" y="80" width="290" height="176" rx="12" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="351" y="104" font-size="13" font-weight="600" fill="#e8ecf2">Text QR</text>
+  <text class="s" x="351" y="124" font-size="9" fill="#78828f">입력</text>
+  <text class="m" x="351" y="140" font-size="10" fill="#a2acbb">안녕하세요 QR 테스트</text>
+  <text class="s" x="351" y="162" font-size="9" fill="#78828f">QR payload</text>
+  <text class="m" x="351" y="179" font-size="10.5" fill="#6f95ff">안녕하세요 QR 테스트</text>
+  <line x1="351" y1="195" x2="609" y2="195" stroke="#262c35"/>
+  <rect x="351" y="206" width="180" height="26" rx="13" fill="#3a1a1a"/>
+  <text class="s" x="365" y="223" font-size="10" font-weight="600" fill="#ff8080">✗  서버에서 차단 불가</text>
+
+  <!-- Short URL QR -->
+  <rect x="646" y="80" width="290" height="176" rx="12" fill="#171b21" stroke="#6f95ff" stroke-opacity="0.45"/>
+  <text class="s" x="662" y="104" font-size="13" font-weight="600" fill="#e8ecf2">Short URL QR</text>
+  <text class="s" x="662" y="124" font-size="9" fill="#78828f">입력</text>
+  <text class="m" x="662" y="140" font-size="10" fill="#a2acbb">https://food.hsoc.kr</text>
+  <text class="s" x="662" y="162" font-size="9" fill="#78828f">QR payload</text>
+  <text class="m" x="662" y="179" font-size="10.5" fill="#6f95ff">https://url.mvtp.cloud/001</text>
+  <line x1="662" y1="195" x2="920" y2="195" stroke="#262c35"/>
+  <rect x="662" y="206" width="180" height="26" rx="13" fill="#123024"/>
+  <text class="s" x="676" y="223" font-size="10" font-weight="600" fill="#5cd39a">✓  서버에서 즉시 차단</text>
+
+  <!-- note -->
+  <rect x="24" y="276" width="912" height="70" rx="10" fill="#12161b" stroke="#262c35"/>
+  <text class="s" x="42" y="303" font-size="10.5" fill="#a2acbb">Direct URL QR · Text QR 은 내용이 이미지 안에 그대로 들어 있어, 이미 내려받거나 인쇄한 QR을 서버가 무효화할 수 없습니다.</text>
+  <text class="s" x="42" y="326" font-size="10.5" fill="#a2acbb">나중에 접속을 끊어야 하는 QR은 반드시 Short URL QR로 만들어야 합니다 — 만료·비활성화하면 리다이렉트가 즉시 멈춥니다.</text>
+</svg>

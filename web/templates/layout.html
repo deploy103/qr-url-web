@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex, nofollow">
+<title>{{.Title}} · url.mvtp.cloud</title>
+<meta name="description" content="{{.Description}}">
+<link rel="icon" href="{{asset "favicon.svg"}}" type="image/svg+xml">
+<link rel="stylesheet" href="{{asset "app.css"}}">
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+{{template "content" .}}
+<footer class="site-footer">
+  <span>QR &amp; URL Shortener</span>
+  <span aria-hidden="true">·</span>
+  <span>{{.BaseURL}}</span>
+</footer>
+</body>
+</html>

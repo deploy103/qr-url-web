@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" width="960" height="360" role="img" aria-label="Expiry cleanup: four triggers feed a leased cleanup worker which removes expired short URLs, QR records and files, orphan files, sessions, stats and audit rows">
+  <style>
+    .s { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", Roboto, sans-serif; }
+    .m { font-family: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace; }
+  </style>
+  <defs>
+    <marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#39414d"/>
+    </marker>
+  </defs>
+
+  <rect x="0.5" y="0.5" width="959" height="359" rx="14" fill="#0f1216" stroke="#262c35"/>
+
+  <text class="s" x="24" y="33" font-size="15" font-weight="600" fill="#e8ecf2">만료 검사와 자동 정리</text>
+  <text class="s" x="24" y="54" font-size="11" fill="#78828f">정리 실행과 무관하게 매 요청에서 만료를 확인합니다. 외부 cron에 의존하지 않습니다.</text>
+
+  <text class="s" x="24" y="76" font-size="9.5" font-weight="600" fill="#78828f">정리 트리거</text>
+  <text class="s" x="350" y="76" font-size="9.5" font-weight="600" fill="#78828f">cleanup 워커</text>
+  <text class="s" x="676" y="76" font-size="9.5" font-weight="600" fill="#78828f">삭제 대상</text>
+
+  <!-- triggers -->
+  <rect x="24" y="88" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="40" y="109" font-size="11" font-weight="600" fill="#e8ecf2">① 애플리케이션 시작</text>
+  <text class="m" x="40" y="127" font-size="9" fill="#78828f">cleanup.Run — 즉시 1회</text>
+
+  <rect x="24" y="152" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="40" y="173" font-size="11" font-weight="600" fill="#e8ecf2">② 주기 실행 (goroutine)</text>
+  <text class="m" x="40" y="191" font-size="9" fill="#78828f">QRURL_CLEANUP_INTERVAL</text>
+
+  <rect x="24" y="216" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="40" y="237" font-size="11" font-weight="600" fill="#e8ecf2">③ 리다이렉트 요청</text>
+  <text class="s" x="40" y="255" font-size="9" fill="#78828f">해당 링크만 즉시 검사 → 410</text>
+
+  <rect x="24" y="280" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="40" y="301" font-size="11" font-weight="600" fill="#e8ecf2">④ 관리자 페이지 조회</text>
+  <text class="s" x="40" y="319" font-size="9" fill="#78828f">최대 30초에 1회, 비동기</text>
+
+  <line x1="288" y1="210" x2="346" y2="210" stroke="#39414d" stroke-width="1.5" marker-end="url(#arw2)"/>
+
+  <!-- worker -->
+  <rect x="350" y="142" width="260" height="136" rx="12" fill="#12161b" stroke="#6f95ff" stroke-opacity="0.4"/>
+  <text class="s" x="366" y="170" font-size="13" font-weight="600" fill="#e8ecf2">cleanup 워커</text>
+  <line x1="366" y1="182" x2="594" y2="182" stroke="#262c35"/>
+  <text class="s" x="366" y="202" font-size="9.5" fill="#a2acbb">프로세스 내부 · <tspan class="m" fill="#6f95ff">sync.Mutex</tspan></text>
+  <text class="s" x="366" y="222" font-size="9.5" fill="#a2acbb">프로세스 간 · lease 임대 (2분 만료)</text>
+  <text class="s" x="366" y="242" font-size="9.5" fill="#a2acbb">획득 실패 시 <tspan class="m" fill="#6f95ff">skipped</tspan> 반환</text>
+  <text class="s" x="366" y="262" font-size="9.5" fill="#a2acbb">파일 삭제는 커밋 이후에만</text>
+
+  <line x1="614" y1="210" x2="672" y2="210" stroke="#39414d" stroke-width="1.5" marker-end="url(#arw2)"/>
+
+  <!-- targets -->
+  <rect x="676" y="88" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="692" y="109" font-size="11" font-weight="600" fill="#e8ecf2">만료된 단축 URL</text>
+  <text class="s" x="692" y="127" font-size="9" fill="#78828f">FK cascade로 연결된 QR까지</text>
+
+  <rect x="676" y="152" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="692" y="173" font-size="11" font-weight="600" fill="#e8ecf2">만료된 QR 기록</text>
+  <text class="s" x="692" y="191" font-size="9" fill="#78828f">저장된 PNG · SVG 파일 포함</text>
+
+  <rect x="676" y="216" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="692" y="237" font-size="11" font-weight="600" fill="#e8ecf2">고아 파일</text>
+  <text class="s" x="692" y="255" font-size="9" fill="#78828f">DB에 기록이 없는 파일 (10분 유예)</text>
+
+  <rect x="676" y="280" width="260" height="52" rx="9" fill="#171b21" stroke="#262c35"/>
+  <text class="s" x="692" y="301" font-size="11" font-weight="600" fill="#e8ecf2">세션 · 통계 · 감사 로그</text>
+  <text class="s" x="692" y="319" font-size="9" fill="#78828f">만료 세션, 400일 / 180일 초과분</text>
+</svg>

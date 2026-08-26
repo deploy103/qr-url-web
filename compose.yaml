@@ -1,0 +1,95 @@
+# QR Code generator + URL shortener
+#
+# Mirrors the layout of the other services on mvtp-web: the container joins the
+# shared mvtp-web-net, publishes nothing to the host, and internal-nginx routes
+# url.mvtp.cloud to it by container name.
+#
+#   docker compose up -d --build
+#
+# The first start prints a generated administrator password to the log unless
+# QRURL_ADMIN_PASSWORD is set:
+#
+#   docker compose logs qr-url | head -30
+
+services:
+  qr-url:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VERSION: ${QRURL_VERSION:-1.2.0}
+    image: qr-url:${QRURL_VERSION:-1.2.0}
+    container_name: qr-url
+    restart: unless-stopped
+    init: true
+
+    environment:
+      QRURL_ADDR: 0.0.0.0:8013
+      QRURL_BASE_URL: ${QRURL_BASE_URL:-https://url.mvtp.cloud}
+      QRURL_DATA_DIR: /data
+      QRURL_TIMEZONE: ${QRURL_TIMEZONE:-Asia/Seoul}
+
+      # TLS is terminated by the edge proxy, so the cookie must still be marked
+      # Secure and HSTS must still be sent.
+      QRURL_SECURE_COOKIE: "true"
+      QRURL_HSTS: "true"
+
+      # Believe the forwarding headers only when they come from the Docker
+      # network that internal-nginx lives on.
+      QRURL_TRUST_PROXY: "true"
+      QRURL_TRUSTED_PROXIES: ${QRURL_TRUSTED_PROXIES:-172.16.0.0/12}
+
+      QRURL_PUBLIC_QR: ${QRURL_PUBLIC_QR:-true}
+      # Restrict the anonymous generator to the LAN, for example 10.0.0.0/24.
+      QRURL_PUBLIC_QR_ALLOW: ${QRURL_PUBLIC_QR_ALLOW:-}
+
+      QRURL_REDIRECT_RATE: ${QRURL_REDIRECT_RATE:-120}
+      QRURL_SESSION_TTL: ${QRURL_SESSION_TTL:-12h}
+      QRURL_CLEANUP_INTERVAL: ${QRURL_CLEANUP_INTERVAL:-5m}
+      QRURL_BACKUP_INTERVAL: ${QRURL_BACKUP_INTERVAL:-24h}
+      QRURL_BACKUP_KEEP: ${QRURL_BACKUP_KEEP:-14}
+      QRURL_LOG_LEVEL: ${QRURL_LOG_LEVEL:-info}
+      QRURL_LOG_FORMAT: json
+
+      # Set once for the very first start, then remove it again.
+      QRURL_ADMIN_USERNAME: ${QRURL_ADMIN_USERNAME:-}
+      QRURL_ADMIN_PASSWORD: ${QRURL_ADMIN_PASSWORD:-}
+
+    volumes:
+      - qr-url-data:/data
+
+    networks:
+      - mvtp-web-net
+
+    # No ports: internal-nginx reaches the container over the shared network.
+    expose:
+      - "8013"
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8013/health | grep -q '\"status\":\"ok\"'"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  qr-url-data:
+    name: qr-url-data
+
+networks:
+  mvtp-web-net:
+    external: true
+    name: mvtp-web-net

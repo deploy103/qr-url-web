@@ -1,0 +1,464 @@
+{{define "content"}}
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/adminpage">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">관리자</span>
+    </a>
+    <div class="topbar-meta">
+      <code class="topbar-origin">{{.BaseURL}}</code>
+    </div>
+    <nav class="topbar-nav">
+      <button class="btn btn-ghost" type="button" id="run-cleanup">만료 정리 실행</button>
+      <a class="btn btn-ghost" href="/">QR 생성기</a>
+      <form method="post" action="/adminpage/logout" class="inline-form">
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+        <button class="btn btn-ghost" type="submit">로그아웃</button>
+      </form>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page page-admin" data-csrf="{{.CSRFToken}}" data-base-url="{{.BaseURL}}">
+  <div class="tabs" role="tablist">
+    <button class="tab is-active" role="tab" type="button" data-tab="dashboard" aria-selected="true">대시보드</button>
+    <button class="tab" role="tab" type="button" data-tab="links" aria-selected="false">단축 URL</button>
+    <button class="tab" role="tab" type="button" data-tab="qrs" aria-selected="false">QR 코드</button>
+    <button class="tab" role="tab" type="button" data-tab="settings" aria-selected="false">설정</button>
+  </div>
+
+  <p class="alert alert-error" id="global-error" role="alert" hidden></p>
+  <p class="toast" id="toast" role="status" hidden></p>
+
+  <!-- ------------------------------------------------------ Dashboard -->
+  <section class="panel is-active" id="panel-dashboard" role="tabpanel">
+    <div class="stat-grid" id="stat-grid"></div>
+
+    <div class="split">
+      <section class="card">
+        <header class="card-head">
+          <h2>곧 만료되는 항목</h2>
+          <span class="card-sub" id="expiring-window"></span>
+        </header>
+        <div id="expiring-list" class="mini-list"></div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>최근 생성 항목</h2>
+        </header>
+        <div id="recent-list" class="mini-list"></div>
+      </section>
+    </div>
+
+    <section class="card">
+      <header class="card-head">
+        <h2>최근 활동</h2>
+        <span class="card-sub" id="activity-tz"></span>
+      </header>
+      <div id="activity-chart" class="activity"></div>
+      <p class="card-foot" id="cleanup-status"></p>
+    </section>
+  </section>
+
+  <!-- ------------------------------------------------------ Short URLs -->
+  <section class="panel" id="panel-links" role="tabpanel">
+    <div class="toolbar">
+      <div class="toolbar-fields">
+        <input type="search" id="link-search" placeholder="코드 · 주소 · 메모 검색" aria-label="단축 URL 검색">
+        <select id="link-status" aria-label="상태 필터">
+          <option value="">전체 상태</option>
+          <option value="active">활성</option>
+          <option value="disabled">비활성</option>
+          <option value="expiring">곧 만료</option>
+          <option value="expired">만료됨</option>
+        </select>
+        <select id="link-sort" aria-label="정렬 기준">
+          <option value="code">코드순</option>
+          <option value="created_at">생성일순</option>
+          <option value="expires_at">만료일순</option>
+          <option value="click_count">클릭수순</option>
+          <option value="last_accessed_at">최근 접속순</option>
+        </select>
+        <button class="btn btn-ghost btn-icon" type="button" id="link-order" data-order="asc"
+                aria-label="정렬 방향 전환">↑</button>
+      </div>
+      <button class="btn btn-primary" type="button" id="new-link">새 단축 URL</button>
+    </div>
+    <p class="list-summary" id="link-summary"></p>
+    <div id="link-table" class="data-table"></div>
+  </section>
+
+  <!-- --------------------------------------------------------- QR codes -->
+  <section class="panel" id="panel-qrs" role="tabpanel">
+    <p class="alert alert-warn">
+      <strong>Direct URL QR·Text QR</strong>은 내용이 이미지 안에 들어 있어, 이미 배포된 QR을 서버에서 무효화할 수 없습니다.
+      만료가 실제 접속 차단으로 이어져야 한다면 <strong>Short URL QR</strong>을 사용하세요.
+    </p>
+    <div class="toolbar">
+      <div class="toolbar-fields">
+        <input type="search" id="qr-search" placeholder="페이로드 · 이름 · 코드 검색" aria-label="QR 검색">
+        <select id="qr-kind" aria-label="종류 필터">
+          <option value="">전체 종류</option>
+          <option value="short">Short URL QR</option>
+          <option value="url">Direct URL QR</option>
+          <option value="text">Text QR</option>
+        </select>
+        <select id="qr-status" aria-label="상태 필터">
+          <option value="">전체 상태</option>
+          <option value="active">활성</option>
+          <option value="expiring">곧 만료</option>
+          <option value="expired">만료됨</option>
+        </select>
+        <select id="qr-sort" aria-label="정렬 기준">
+          <option value="created_at">생성일순</option>
+          <option value="expires_at">만료일순</option>
+          <option value="kind">종류순</option>
+          <option value="label">이름순</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="button" id="new-qr">새 QR 코드</button>
+    </div>
+    <p class="list-summary" id="qr-summary"></p>
+    <div id="qr-grid" class="qr-grid"></div>
+    <div class="list-more">
+      <button class="btn" type="button" id="qr-more" hidden>더 불러오기</button>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------------- Settings -->
+  <section class="panel" id="panel-settings" role="tabpanel">
+    <div class="split">
+      <section class="card">
+        <header class="card-head">
+          <h2>관리자 계정</h2>
+        </header>
+        <dl class="detail-grid" id="account-summary"></dl>
+
+        <form id="password-form" autocomplete="off">
+          <p class="alert alert-error" id="password-error" role="alert" hidden></p>
+          <p class="alert alert-info" id="password-ok" role="status" hidden></p>
+          <div class="field">
+            <label for="current-password">현재 비밀번호</label>
+            <input id="current-password" type="password" autocomplete="current-password" maxlength="256" required>
+          </div>
+          <div class="field">
+            <label for="new-password">새 비밀번호</label>
+            <input id="new-password" type="password" autocomplete="new-password" maxlength="256" required>
+            <p class="field-hint">12자 이상. 변경하면 다른 모든 세션이 로그아웃됩니다.</p>
+          </div>
+          <div class="field">
+            <label for="confirm-password">새 비밀번호 확인</label>
+            <input id="confirm-password" type="password" autocomplete="new-password" maxlength="256" required>
+          </div>
+          <button class="btn btn-primary" type="submit">비밀번호 변경</button>
+        </form>
+
+        <div class="settings-actions">
+          <button class="btn" type="button" id="revoke-sessions">다른 세션 모두 로그아웃</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>내보내기 · 진단</h2>
+        </header>
+        <p class="field-hint">
+          현재 목록을 파일로 내려받습니다. 데이터베이스 전체 백업은
+          <code>qrurl backup</code> 을 사용하세요.
+        </p>
+        <div class="export-grid" id="export-links"></div>
+        <dl class="detail-grid" id="diagnostics"></dl>
+      </section>
+    </div>
+
+    <section class="card">
+      <header class="card-head">
+        <h2>감사 로그</h2>
+        <span class="card-sub" id="audit-summary"></span>
+      </header>
+      <div class="audit-list" id="audit-list"></div>
+    </section>
+  </section>
+</main>
+
+<!-- ------------------------------------------------------------- dialogs -->
+<dialog class="modal" id="link-dialog">
+  <form method="dialog" class="modal-inner" id="link-form">
+    <header class="modal-head">
+      <h2 id="link-dialog-title">새 단축 URL</h2>
+      <button class="btn btn-icon btn-ghost" type="button" data-close aria-label="닫기">✕</button>
+    </header>
+    <div class="modal-body">
+      <p class="alert alert-error" id="link-form-error" role="alert" hidden></p>
+
+      <div class="field">
+        <label for="link-target">대상 주소</label>
+        <input id="link-target" type="url" required placeholder="https://example.com/page"
+               spellcheck="false" maxlength="2000">
+        <p class="field-hint">http:// 또는 https:// 주소만 사용할 수 있습니다. 서버가 이 주소를 미리 열어보지 않습니다.</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="link-code">단축 코드</label>
+          <input id="link-code" type="text" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3"
+                 placeholder="비우면 자동 할당">
+          <p class="field-hint">001 ~ 999</p>
+        </div>
+        <div class="field">
+          <label for="link-note">메모</label>
+          <input id="link-note" type="text" maxlength="200" placeholder="선택 사항">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="link-expiry">만료 기간</label>
+          <select id="link-expiry">
+            {{range .Presets}}<option value="{{.Value}}">{{.Label}}</option>{{end}}
+          </select>
+        </div>
+        <div class="field" id="link-expiry-custom-field" hidden>
+          <label for="link-expiry-custom">만료 일시</label>
+          <input id="link-expiry-custom" type="datetime-local">
+          <p class="field-hint tz-hint"></p>
+        </div>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" id="link-enabled" checked>
+        <span>활성 상태로 사용</span>
+      </label>
+
+      <div id="link-qr-block">
+        <label class="checkbox">
+          <input type="checkbox" id="link-create-qr">
+          <span>이 단축 URL의 QR도 함께 생성</span>
+        </label>
+        <div class="field-row" id="link-qr-options" hidden>
+          <div class="field">
+            <label for="link-qr-ec">오류 정정</label>
+            <select id="link-qr-ec">
+              {{range .Levels}}<option value="{{.Value}}"{{if eq .Value "M"}} selected{{end}}>{{.Label}}</option>{{end}}
+            </select>
+          </div>
+          <div class="field">
+            <label for="link-qr-size">크기</label>
+            <select id="link-qr-size">
+              {{range .Sizes}}<option value="{{.}}"{{if eq . 512}} selected{{end}}>{{.}} px</option>{{end}}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" type="button" data-close>취소</button>
+      <button class="btn btn-primary" type="submit" id="link-submit">저장</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="qr-dialog">
+  <form method="dialog" class="modal-inner" id="qr-form-dialog">
+    <header class="modal-head">
+      <h2>새 QR 코드</h2>
+      <button class="btn btn-icon btn-ghost" type="button" data-close aria-label="닫기">✕</button>
+    </header>
+    <div class="modal-body">
+      <p class="alert alert-error" id="qr-form-error" role="alert" hidden></p>
+
+      <fieldset class="field">
+        <legend>종류</legend>
+        <div class="segmented" role="radiogroup">
+          <label class="segmented-item">
+            <input type="radio" name="qr-kind-input" value="short" checked><span>Short URL</span>
+          </label>
+          <label class="segmented-item">
+            <input type="radio" name="qr-kind-input" value="url"><span>Direct URL</span>
+          </label>
+          <label class="segmented-item">
+            <input type="radio" name="qr-kind-input" value="text"><span>Text</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <p class="alert alert-info" id="qr-kind-note"></p>
+
+      <div data-kind-block="short">
+        <div class="field">
+          <label for="qr-short-code">연결할 단축 URL</label>
+          <select id="qr-short-code">
+            <option value="">새로 만들기</option>
+          </select>
+        </div>
+        <div id="qr-new-short">
+          <div class="field">
+            <label for="qr-target">대상 주소</label>
+            <input id="qr-target" type="url" placeholder="https://example.com/page" maxlength="2000" spellcheck="false">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="qr-new-code">단축 코드</label>
+              <input id="qr-new-code" type="text" inputmode="numeric" pattern="[0-9]{1,3}" maxlength="3"
+                     placeholder="비우면 자동 할당">
+            </div>
+            <div class="field">
+              <label for="qr-link-expiry">단축 URL 만료</label>
+              <select id="qr-link-expiry">
+                <option value="__qr">QR과 동일</option>
+                {{range .Presets}}<option value="{{.Value}}">{{.Label}}</option>{{end}}
+              </select>
+            </div>
+          </div>
+          <div class="field" id="qr-link-expiry-custom-field" hidden>
+            <label for="qr-link-expiry-custom">단축 URL 만료 일시</label>
+            <input id="qr-link-expiry-custom" type="datetime-local">
+            <p class="field-hint tz-hint"></p>
+          </div>
+        </div>
+      </div>
+
+      <div data-kind-block="url" hidden>
+        <div class="field">
+          <label for="qr-url">주소</label>
+          <input id="qr-url" type="url" placeholder="https://food.hsoc.kr" maxlength="2000" spellcheck="false">
+        </div>
+      </div>
+
+      <div data-kind-block="text" hidden>
+        <div class="field">
+          <label for="qr-text">텍스트</label>
+          <textarea id="qr-text" rows="3" spellcheck="false" placeholder="QR에 담을 문구"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="qr-label">이름</label>
+        <input id="qr-label" type="text" maxlength="120" placeholder="선택 사항">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="qr-ec">오류 정정</label>
+          <select id="qr-ec">
+            {{range .Levels}}<option value="{{.Value}}"{{if eq .Value "M"}} selected{{end}}>{{.Label}}</option>{{end}}
+          </select>
+        </div>
+        <div class="field">
+          <label for="qr-size">크기</label>
+          <select id="qr-size">
+            {{range .Sizes}}<option value="{{.}}"{{if eq . 512}} selected{{end}}>{{.}} px</option>{{end}}
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="qr-expiry">QR 만료 기간</label>
+          <select id="qr-expiry">
+            {{range .Presets}}<option value="{{.Value}}">{{.Label}}</option>{{end}}
+          </select>
+        </div>
+        <div class="field" id="qr-expiry-custom-field" hidden>
+          <label for="qr-expiry-custom">만료 일시</label>
+          <input id="qr-expiry-custom" type="datetime-local">
+          <p class="field-hint tz-hint"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">미리보기</span>
+        <div class="dialog-preview">
+          <div class="preview-frame preview-frame-sm">
+            <img id="qr-dialog-preview" alt="생성될 QR 미리보기" hidden>
+            <p class="preview-empty" id="qr-dialog-preview-empty">내용을 입력하면 미리보기가 나타납니다.</p>
+          </div>
+          <p class="dialog-preview-payload" id="qr-dialog-payload"></p>
+        </div>
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" type="button" data-close>취소</button>
+      <button class="btn btn-primary" type="submit">생성</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="expiry-dialog">
+  <form method="dialog" class="modal-inner" id="expiry-form">
+    <header class="modal-head">
+      <h2 id="expiry-dialog-title">만료 기간 변경</h2>
+      <button class="btn btn-icon btn-ghost" type="button" data-close aria-label="닫기">✕</button>
+    </header>
+    <div class="modal-body">
+      <p class="alert alert-error" id="expiry-form-error" role="alert" hidden></p>
+      <p class="modal-subject" id="expiry-subject"></p>
+      <div class="field">
+        <label for="expiry-mode">동작</label>
+        <select id="expiry-mode">
+          <option value="set">만료 기간 다시 지정</option>
+          <option value="extend">현재 만료에서 연장</option>
+        </select>
+      </div>
+      <div class="field" id="expiry-set-field">
+        <label for="expiry-preset">만료 기간</label>
+        <select id="expiry-preset">
+          {{range .Presets}}<option value="{{.Value}}">{{.Label}}</option>{{end}}
+        </select>
+      </div>
+      <div class="field" id="expiry-custom-field" hidden>
+        <label for="expiry-custom">만료 일시</label>
+        <input id="expiry-custom" type="datetime-local">
+        <p class="field-hint tz-hint"></p>
+      </div>
+      <div class="field" id="expiry-extend-field" hidden>
+        <label for="expiry-extend">연장 기간</label>
+        <select id="expiry-extend">
+          <option value="1h">1시간</option>
+          <option value="1d">1일</option>
+          <option value="7d" selected>7일</option>
+          <option value="30d">30일</option>
+          <option value="90d">90일</option>
+        </select>
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" type="button" data-close>취소</button>
+      <button class="btn btn-primary" type="submit">적용</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal modal-narrow" id="confirm-dialog">
+  <form method="dialog" class="modal-inner" id="confirm-form">
+    <header class="modal-head">
+      <h2 id="confirm-title">삭제 확인</h2>
+    </header>
+    <div class="modal-body">
+      <p id="confirm-message"></p>
+      <div class="field" id="confirm-typing-field">
+        <label for="confirm-input">확인을 위해 <code id="confirm-word"></code> 을(를) 입력하세요</label>
+        <input id="confirm-input" type="text" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <footer class="modal-foot">
+      <button class="btn btn-ghost" type="button" data-close>취소</button>
+      <button class="btn btn-danger" type="submit" id="confirm-submit">삭제</button>
+    </footer>
+  </form>
+</dialog>
+
+<dialog class="modal" id="detail-dialog">
+  <div class="modal-inner">
+    <header class="modal-head">
+      <h2 id="detail-title">QR 상세</h2>
+      <button class="btn btn-icon btn-ghost" type="button" data-close aria-label="닫기">✕</button>
+    </header>
+    <div class="modal-body" id="detail-body"></div>
+    <footer class="modal-foot" id="detail-foot"></footer>
+  </div>
+</dialog>
+
+<script src="{{asset "admin.js"}}" defer></script>
+{{end}}

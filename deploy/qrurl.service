@@ -1,0 +1,62 @@
+[Unit]
+Description=QR Code generator and URL shortener (url.mvtp.cloud)
+Documentation=file:/opt/qrurl/README.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=qrurl
+Group=qrurl
+WorkingDirectory=/opt/qrurl
+EnvironmentFile=/etc/qrurl/qrurl.env
+ExecStart=/opt/qrurl/bin/qrurl serve
+
+Restart=on-failure
+RestartSec=3s
+# Give in-flight requests time to finish; the process shuts down gracefully on
+# SIGTERM and closes the database cleanly.
+KillSignal=SIGTERM
+TimeoutStopSec=30s
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=qrurl
+
+# ---------------------------------------------------------------- hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateUsers=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectProc=invisible
+ProcSubset=pid
+ProtectClock=yes
+ProtectHostname=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+CapabilityBoundingSet=
+AmbientCapabilities=
+UMask=0077
+
+# The database, the rendered QR files and the backups live here.
+ReadWritePaths=/var/lib/qrurl
+
+# The service only ever listens on the loopback interface; Nginx terminates TLS.
+IPAddressAllow=localhost
+IPAddressDeny=any
+
+[Install]
+WantedBy=multi-user.target

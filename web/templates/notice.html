@@ -1,0 +1,13 @@
+{{define "content"}}
+<main id="main" class="page page-notice">
+  <div class="card notice-box">
+    <p class="notice-status">{{.Status}}</p>
+    <h1>{{.Title}}</h1>
+    <p>{{.Message}}</p>
+    <p class="notice-actions">
+      <a class="btn btn-primary" href="/">QR 생성기로 이동</a>
+      <a class="btn btn-ghost" href="/adminpage">관리자 페이지</a>
+    </p>
+  </div>
+</main>
+{{end}}

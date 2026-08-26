@@ -1,0 +1,1175 @@
+{
+ "source": "segno 1.6.6 (segno.consts.ECC), independent implementation of ISO/IEC 18004",
+ "totalCodewords": [
+  26,
+  44,
+  70,
+  100,
+  134,
+  172,
+  196,
+  242,
+  292,
+  346,
+  404,
+  466,
+  532,
+  581,
+  655,
+  733,
+  815,
+  901,
+  991,
+  1085,
+  1156,
+  1258,
+  1364,
+  1474,
+  1588,
+  1706,
+  1828,
+  1921,
+  2051,
+  2185,
+  2323,
+  2465,
+  2611,
+  2761,
+  2876,
+  3034,
+  3196,
+  3362,
+  3532,
+  3706
+ ],
+ "levels": {
+  "L": [
+   {
+    "ecPerBlock": 7,
+    "blocks": 1,
+    "totalCodewords": 26,
+    "dataCodewords": 19,
+    "byteCapacity": 17
+   },
+   {
+    "ecPerBlock": 10,
+    "blocks": 1,
+    "totalCodewords": 44,
+    "dataCodewords": 34,
+    "byteCapacity": 32
+   },
+   {
+    "ecPerBlock": 15,
+    "blocks": 1,
+    "totalCodewords": 70,
+    "dataCodewords": 55,
+    "byteCapacity": 53
+   },
+   {
+    "ecPerBlock": 20,
+    "blocks": 1,
+    "totalCodewords": 100,
+    "dataCodewords": 80,
+    "byteCapacity": 78
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 1,
+    "totalCodewords": 134,
+    "dataCodewords": 108,
+    "byteCapacity": 106
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 2,
+    "totalCodewords": 172,
+    "dataCodewords": 136,
+    "byteCapacity": 134
+   },
+   {
+    "ecPerBlock": 20,
+    "blocks": 2,
+    "totalCodewords": 196,
+    "dataCodewords": 156,
+    "byteCapacity": 154
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 2,
+    "totalCodewords": 242,
+    "dataCodewords": 194,
+    "byteCapacity": 192
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 2,
+    "totalCodewords": 292,
+    "dataCodewords": 232,
+    "byteCapacity": 230
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 4,
+    "totalCodewords": 346,
+    "dataCodewords": 274,
+    "byteCapacity": 271
+   },
+   {
+    "ecPerBlock": 20,
+    "blocks": 4,
+    "totalCodewords": 404,
+    "dataCodewords": 324,
+    "byteCapacity": 321
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 4,
+    "totalCodewords": 466,
+    "dataCodewords": 370,
+    "byteCapacity": 367
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 4,
+    "totalCodewords": 532,
+    "dataCodewords": 428,
+    "byteCapacity": 425
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 4,
+    "totalCodewords": 581,
+    "dataCodewords": 461,
+    "byteCapacity": 458
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 6,
+    "totalCodewords": 655,
+    "dataCodewords": 523,
+    "byteCapacity": 520
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 6,
+    "totalCodewords": 733,
+    "dataCodewords": 589,
+    "byteCapacity": 586
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 6,
+    "totalCodewords": 815,
+    "dataCodewords": 647,
+    "byteCapacity": 644
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 6,
+    "totalCodewords": 901,
+    "dataCodewords": 721,
+    "byteCapacity": 718
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 7,
+    "totalCodewords": 991,
+    "dataCodewords": 795,
+    "byteCapacity": 792
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 8,
+    "totalCodewords": 1085,
+    "dataCodewords": 861,
+    "byteCapacity": 858
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 8,
+    "totalCodewords": 1156,
+    "dataCodewords": 932,
+    "byteCapacity": 929
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 9,
+    "totalCodewords": 1258,
+    "dataCodewords": 1006,
+    "byteCapacity": 1003
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 9,
+    "totalCodewords": 1364,
+    "dataCodewords": 1094,
+    "byteCapacity": 1091
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 10,
+    "totalCodewords": 1474,
+    "dataCodewords": 1174,
+    "byteCapacity": 1171
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 12,
+    "totalCodewords": 1588,
+    "dataCodewords": 1276,
+    "byteCapacity": 1273
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 12,
+    "totalCodewords": 1706,
+    "dataCodewords": 1370,
+    "byteCapacity": 1367
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 12,
+    "totalCodewords": 1828,
+    "dataCodewords": 1468,
+    "byteCapacity": 1465
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 13,
+    "totalCodewords": 1921,
+    "dataCodewords": 1531,
+    "byteCapacity": 1528
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 14,
+    "totalCodewords": 2051,
+    "dataCodewords": 1631,
+    "byteCapacity": 1628
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 15,
+    "totalCodewords": 2185,
+    "dataCodewords": 1735,
+    "byteCapacity": 1732
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 16,
+    "totalCodewords": 2323,
+    "dataCodewords": 1843,
+    "byteCapacity": 1840
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 17,
+    "totalCodewords": 2465,
+    "dataCodewords": 1955,
+    "byteCapacity": 1952
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 18,
+    "totalCodewords": 2611,
+    "dataCodewords": 2071,
+    "byteCapacity": 2068
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 19,
+    "totalCodewords": 2761,
+    "dataCodewords": 2191,
+    "byteCapacity": 2188
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 19,
+    "totalCodewords": 2876,
+    "dataCodewords": 2306,
+    "byteCapacity": 2303
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 20,
+    "totalCodewords": 3034,
+    "dataCodewords": 2434,
+    "byteCapacity": 2431
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 21,
+    "totalCodewords": 3196,
+    "dataCodewords": 2566,
+    "byteCapacity": 2563
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 22,
+    "totalCodewords": 3362,
+    "dataCodewords": 2702,
+    "byteCapacity": 2699
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 24,
+    "totalCodewords": 3532,
+    "dataCodewords": 2812,
+    "byteCapacity": 2809
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 25,
+    "totalCodewords": 3706,
+    "dataCodewords": 2956,
+    "byteCapacity": 2953
+   }
+  ],
+  "M": [
+   {
+    "ecPerBlock": 10,
+    "blocks": 1,
+    "totalCodewords": 26,
+    "dataCodewords": 16,
+    "byteCapacity": 14
+   },
+   {
+    "ecPerBlock": 16,
+    "blocks": 1,
+    "totalCodewords": 44,
+    "dataCodewords": 28,
+    "byteCapacity": 26
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 1,
+    "totalCodewords": 70,
+    "dataCodewords": 44,
+    "byteCapacity": 42
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 2,
+    "totalCodewords": 100,
+    "dataCodewords": 64,
+    "byteCapacity": 62
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 2,
+    "totalCodewords": 134,
+    "dataCodewords": 86,
+    "byteCapacity": 84
+   },
+   {
+    "ecPerBlock": 16,
+    "blocks": 4,
+    "totalCodewords": 172,
+    "dataCodewords": 108,
+    "byteCapacity": 106
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 4,
+    "totalCodewords": 196,
+    "dataCodewords": 124,
+    "byteCapacity": 122
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 4,
+    "totalCodewords": 242,
+    "dataCodewords": 154,
+    "byteCapacity": 152
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 5,
+    "totalCodewords": 292,
+    "dataCodewords": 182,
+    "byteCapacity": 180
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 5,
+    "totalCodewords": 346,
+    "dataCodewords": 216,
+    "byteCapacity": 213
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 5,
+    "totalCodewords": 404,
+    "dataCodewords": 254,
+    "byteCapacity": 251
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 8,
+    "totalCodewords": 466,
+    "dataCodewords": 290,
+    "byteCapacity": 287
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 9,
+    "totalCodewords": 532,
+    "dataCodewords": 334,
+    "byteCapacity": 331
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 9,
+    "totalCodewords": 581,
+    "dataCodewords": 365,
+    "byteCapacity": 362
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 10,
+    "totalCodewords": 655,
+    "dataCodewords": 415,
+    "byteCapacity": 412
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 10,
+    "totalCodewords": 733,
+    "dataCodewords": 453,
+    "byteCapacity": 450
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 11,
+    "totalCodewords": 815,
+    "dataCodewords": 507,
+    "byteCapacity": 504
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 13,
+    "totalCodewords": 901,
+    "dataCodewords": 563,
+    "byteCapacity": 560
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 14,
+    "totalCodewords": 991,
+    "dataCodewords": 627,
+    "byteCapacity": 624
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 16,
+    "totalCodewords": 1085,
+    "dataCodewords": 669,
+    "byteCapacity": 666
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 17,
+    "totalCodewords": 1156,
+    "dataCodewords": 714,
+    "byteCapacity": 711
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 17,
+    "totalCodewords": 1258,
+    "dataCodewords": 782,
+    "byteCapacity": 779
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 18,
+    "totalCodewords": 1364,
+    "dataCodewords": 860,
+    "byteCapacity": 857
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 20,
+    "totalCodewords": 1474,
+    "dataCodewords": 914,
+    "byteCapacity": 911
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 21,
+    "totalCodewords": 1588,
+    "dataCodewords": 1000,
+    "byteCapacity": 997
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 23,
+    "totalCodewords": 1706,
+    "dataCodewords": 1062,
+    "byteCapacity": 1059
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 25,
+    "totalCodewords": 1828,
+    "dataCodewords": 1128,
+    "byteCapacity": 1125
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 26,
+    "totalCodewords": 1921,
+    "dataCodewords": 1193,
+    "byteCapacity": 1190
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 28,
+    "totalCodewords": 2051,
+    "dataCodewords": 1267,
+    "byteCapacity": 1264
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 29,
+    "totalCodewords": 2185,
+    "dataCodewords": 1373,
+    "byteCapacity": 1370
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 31,
+    "totalCodewords": 2323,
+    "dataCodewords": 1455,
+    "byteCapacity": 1452
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 33,
+    "totalCodewords": 2465,
+    "dataCodewords": 1541,
+    "byteCapacity": 1538
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 35,
+    "totalCodewords": 2611,
+    "dataCodewords": 1631,
+    "byteCapacity": 1628
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 37,
+    "totalCodewords": 2761,
+    "dataCodewords": 1725,
+    "byteCapacity": 1722
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 38,
+    "totalCodewords": 2876,
+    "dataCodewords": 1812,
+    "byteCapacity": 1809
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 40,
+    "totalCodewords": 3034,
+    "dataCodewords": 1914,
+    "byteCapacity": 1911
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 43,
+    "totalCodewords": 3196,
+    "dataCodewords": 1992,
+    "byteCapacity": 1989
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 45,
+    "totalCodewords": 3362,
+    "dataCodewords": 2102,
+    "byteCapacity": 2099
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 47,
+    "totalCodewords": 3532,
+    "dataCodewords": 2216,
+    "byteCapacity": 2213
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 49,
+    "totalCodewords": 3706,
+    "dataCodewords": 2334,
+    "byteCapacity": 2331
+   }
+  ],
+  "Q": [
+   {
+    "ecPerBlock": 13,
+    "blocks": 1,
+    "totalCodewords": 26,
+    "dataCodewords": 13,
+    "byteCapacity": 11
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 1,
+    "totalCodewords": 44,
+    "dataCodewords": 22,
+    "byteCapacity": 20
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 2,
+    "totalCodewords": 70,
+    "dataCodewords": 34,
+    "byteCapacity": 32
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 2,
+    "totalCodewords": 100,
+    "dataCodewords": 48,
+    "byteCapacity": 46
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 4,
+    "totalCodewords": 134,
+    "dataCodewords": 62,
+    "byteCapacity": 60
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 4,
+    "totalCodewords": 172,
+    "dataCodewords": 76,
+    "byteCapacity": 74
+   },
+   {
+    "ecPerBlock": 18,
+    "blocks": 6,
+    "totalCodewords": 196,
+    "dataCodewords": 88,
+    "byteCapacity": 86
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 6,
+    "totalCodewords": 242,
+    "dataCodewords": 110,
+    "byteCapacity": 108
+   },
+   {
+    "ecPerBlock": 20,
+    "blocks": 8,
+    "totalCodewords": 292,
+    "dataCodewords": 132,
+    "byteCapacity": 130
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 8,
+    "totalCodewords": 346,
+    "dataCodewords": 154,
+    "byteCapacity": 151
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 8,
+    "totalCodewords": 404,
+    "dataCodewords": 180,
+    "byteCapacity": 177
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 10,
+    "totalCodewords": 466,
+    "dataCodewords": 206,
+    "byteCapacity": 203
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 12,
+    "totalCodewords": 532,
+    "dataCodewords": 244,
+    "byteCapacity": 241
+   },
+   {
+    "ecPerBlock": 20,
+    "blocks": 16,
+    "totalCodewords": 581,
+    "dataCodewords": 261,
+    "byteCapacity": 258
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 12,
+    "totalCodewords": 655,
+    "dataCodewords": 295,
+    "byteCapacity": 292
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 17,
+    "totalCodewords": 733,
+    "dataCodewords": 325,
+    "byteCapacity": 322
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 16,
+    "totalCodewords": 815,
+    "dataCodewords": 367,
+    "byteCapacity": 364
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 18,
+    "totalCodewords": 901,
+    "dataCodewords": 397,
+    "byteCapacity": 394
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 21,
+    "totalCodewords": 991,
+    "dataCodewords": 445,
+    "byteCapacity": 442
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 20,
+    "totalCodewords": 1085,
+    "dataCodewords": 485,
+    "byteCapacity": 482
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 23,
+    "totalCodewords": 1156,
+    "dataCodewords": 512,
+    "byteCapacity": 509
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 23,
+    "totalCodewords": 1258,
+    "dataCodewords": 568,
+    "byteCapacity": 565
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 25,
+    "totalCodewords": 1364,
+    "dataCodewords": 614,
+    "byteCapacity": 611
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 27,
+    "totalCodewords": 1474,
+    "dataCodewords": 664,
+    "byteCapacity": 661
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 29,
+    "totalCodewords": 1588,
+    "dataCodewords": 718,
+    "byteCapacity": 715
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 34,
+    "totalCodewords": 1706,
+    "dataCodewords": 754,
+    "byteCapacity": 751
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 34,
+    "totalCodewords": 1828,
+    "dataCodewords": 808,
+    "byteCapacity": 805
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 35,
+    "totalCodewords": 1921,
+    "dataCodewords": 871,
+    "byteCapacity": 868
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 38,
+    "totalCodewords": 2051,
+    "dataCodewords": 911,
+    "byteCapacity": 908
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 40,
+    "totalCodewords": 2185,
+    "dataCodewords": 985,
+    "byteCapacity": 982
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 43,
+    "totalCodewords": 2323,
+    "dataCodewords": 1033,
+    "byteCapacity": 1030
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 45,
+    "totalCodewords": 2465,
+    "dataCodewords": 1115,
+    "byteCapacity": 1112
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 48,
+    "totalCodewords": 2611,
+    "dataCodewords": 1171,
+    "byteCapacity": 1168
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 51,
+    "totalCodewords": 2761,
+    "dataCodewords": 1231,
+    "byteCapacity": 1228
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 53,
+    "totalCodewords": 2876,
+    "dataCodewords": 1286,
+    "byteCapacity": 1283
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 56,
+    "totalCodewords": 3034,
+    "dataCodewords": 1354,
+    "byteCapacity": 1351
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 59,
+    "totalCodewords": 3196,
+    "dataCodewords": 1426,
+    "byteCapacity": 1423
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 62,
+    "totalCodewords": 3362,
+    "dataCodewords": 1502,
+    "byteCapacity": 1499
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 65,
+    "totalCodewords": 3532,
+    "dataCodewords": 1582,
+    "byteCapacity": 1579
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 68,
+    "totalCodewords": 3706,
+    "dataCodewords": 1666,
+    "byteCapacity": 1663
+   }
+  ],
+  "H": [
+   {
+    "ecPerBlock": 17,
+    "blocks": 1,
+    "totalCodewords": 26,
+    "dataCodewords": 9,
+    "byteCapacity": 7
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 1,
+    "totalCodewords": 44,
+    "dataCodewords": 16,
+    "byteCapacity": 14
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 2,
+    "totalCodewords": 70,
+    "dataCodewords": 26,
+    "byteCapacity": 24
+   },
+   {
+    "ecPerBlock": 16,
+    "blocks": 4,
+    "totalCodewords": 100,
+    "dataCodewords": 36,
+    "byteCapacity": 34
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 4,
+    "totalCodewords": 134,
+    "dataCodewords": 46,
+    "byteCapacity": 44
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 4,
+    "totalCodewords": 172,
+    "dataCodewords": 60,
+    "byteCapacity": 58
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 5,
+    "totalCodewords": 196,
+    "dataCodewords": 66,
+    "byteCapacity": 64
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 6,
+    "totalCodewords": 242,
+    "dataCodewords": 86,
+    "byteCapacity": 84
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 8,
+    "totalCodewords": 292,
+    "dataCodewords": 100,
+    "byteCapacity": 98
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 8,
+    "totalCodewords": 346,
+    "dataCodewords": 122,
+    "byteCapacity": 119
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 11,
+    "totalCodewords": 404,
+    "dataCodewords": 140,
+    "byteCapacity": 137
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 11,
+    "totalCodewords": 466,
+    "dataCodewords": 158,
+    "byteCapacity": 155
+   },
+   {
+    "ecPerBlock": 22,
+    "blocks": 16,
+    "totalCodewords": 532,
+    "dataCodewords": 180,
+    "byteCapacity": 177
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 16,
+    "totalCodewords": 581,
+    "dataCodewords": 197,
+    "byteCapacity": 194
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 18,
+    "totalCodewords": 655,
+    "dataCodewords": 223,
+    "byteCapacity": 220
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 16,
+    "totalCodewords": 733,
+    "dataCodewords": 253,
+    "byteCapacity": 250
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 19,
+    "totalCodewords": 815,
+    "dataCodewords": 283,
+    "byteCapacity": 280
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 21,
+    "totalCodewords": 901,
+    "dataCodewords": 313,
+    "byteCapacity": 310
+   },
+   {
+    "ecPerBlock": 26,
+    "blocks": 25,
+    "totalCodewords": 991,
+    "dataCodewords": 341,
+    "byteCapacity": 338
+   },
+   {
+    "ecPerBlock": 28,
+    "blocks": 25,
+    "totalCodewords": 1085,
+    "dataCodewords": 385,
+    "byteCapacity": 382
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 25,
+    "totalCodewords": 1156,
+    "dataCodewords": 406,
+    "byteCapacity": 403
+   },
+   {
+    "ecPerBlock": 24,
+    "blocks": 34,
+    "totalCodewords": 1258,
+    "dataCodewords": 442,
+    "byteCapacity": 439
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 30,
+    "totalCodewords": 1364,
+    "dataCodewords": 464,
+    "byteCapacity": 461
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 32,
+    "totalCodewords": 1474,
+    "dataCodewords": 514,
+    "byteCapacity": 511
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 35,
+    "totalCodewords": 1588,
+    "dataCodewords": 538,
+    "byteCapacity": 535
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 37,
+    "totalCodewords": 1706,
+    "dataCodewords": 596,
+    "byteCapacity": 593
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 40,
+    "totalCodewords": 1828,
+    "dataCodewords": 628,
+    "byteCapacity": 625
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 42,
+    "totalCodewords": 1921,
+    "dataCodewords": 661,
+    "byteCapacity": 658
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 45,
+    "totalCodewords": 2051,
+    "dataCodewords": 701,
+    "byteCapacity": 698
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 48,
+    "totalCodewords": 2185,
+    "dataCodewords": 745,
+    "byteCapacity": 742
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 51,
+    "totalCodewords": 2323,
+    "dataCodewords": 793,
+    "byteCapacity": 790
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 54,
+    "totalCodewords": 2465,
+    "dataCodewords": 845,
+    "byteCapacity": 842
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 57,
+    "totalCodewords": 2611,
+    "dataCodewords": 901,
+    "byteCapacity": 898
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 60,
+    "totalCodewords": 2761,
+    "dataCodewords": 961,
+    "byteCapacity": 958
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 63,
+    "totalCodewords": 2876,
+    "dataCodewords": 986,
+    "byteCapacity": 983
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 66,
+    "totalCodewords": 3034,
+    "dataCodewords": 1054,
+    "byteCapacity": 1051
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 70,
+    "totalCodewords": 3196,
+    "dataCodewords": 1096,
+    "byteCapacity": 1093
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 74,
+    "totalCodewords": 3362,
+    "dataCodewords": 1142,
+    "byteCapacity": 1139
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 77,
+    "totalCodewords": 3532,
+    "dataCodewords": 1222,
+    "byteCapacity": 1219
+   },
+   {
+    "ecPerBlock": 30,
+    "blocks": 81,
+    "totalCodewords": 3706,
+    "dataCodewords": 1276,
+    "byteCapacity": 1273
+   }
+  ]
+ }
+}

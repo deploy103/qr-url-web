@@ -1,0 +1,14 @@
+# build output
+/dist/
+
+# local runtime data: database, WAL files, rendered QR images, backups
+/data/
+*.db
+*.db-wal
+*.db-shm
+
+# editors and OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/
