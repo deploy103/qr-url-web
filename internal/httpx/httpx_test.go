@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/httpx"
+	"github.com/deploy103/qr-url-web/internal/httpx"
 )
 
 func mustProxies(t *testing.T, list string) *httpx.TrustedProxies {

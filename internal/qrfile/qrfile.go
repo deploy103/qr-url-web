@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qr"
 )
 
 // Store owns a directory of rendered QR files.

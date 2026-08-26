@@ -33,6 +33,7 @@ Decode: https://food.hsoc.kr
 12. [테스트](#테스트)
 13. [운영](#운영)
 14. [배포](#배포)
+15. [라이선스](#라이선스)
 
 ---
 
@@ -172,7 +173,8 @@ Decode: https://food.hsoc.kr
 ├── Dockerfile            멀티스테이지 (build / test / runtime)
 ├── compose.yaml          운영: mvtp-web-net 합류, 포트 미공개
 ├── compose.dev.yaml      개발: 127.0.0.1:8013 공개
-└── Makefile
+├── Makefile
+└── LICENSE               MIT
 ```
 
 ---
@@ -188,6 +190,12 @@ go version
 
 # 로컬 실행 (data/ 디렉터리에 DB와 QR 파일 생성)
 make run
+```
+
+바이너리만 받으려면:
+
+```bash
+go install github.com/deploy103/qr-url-web/cmd/qrurl@latest
 ```
 
 첫 실행 시 관리자 계정이 없으면 자동으로 생성되고, 무작위 비밀번호가 **표준 에러로
@@ -467,3 +475,9 @@ docker compose -f compose.dev.yaml up -d --build   # 개발: 127.0.0.1:8013
 
 컨테이너는 정적 바이너리 하나만 담아 약 40 MB이고, non-root(`10001`)로 실행되며
 `read_only` 루트 파일시스템 + `cap_drop: ALL` + `no-new-privileges` 로 동작합니다.
+
+---
+
+## 라이선스
+
+[MIT](LICENSE)

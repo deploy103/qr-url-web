@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/cleanup"
-	"github.com/mvtp/qrurl/internal/config"
-	"github.com/mvtp/qrurl/internal/httpx"
-	"github.com/mvtp/qrurl/internal/qrfile"
-	"github.com/mvtp/qrurl/internal/store"
-	"github.com/mvtp/qrurl/web"
+	"github.com/deploy103/qr-url-web/internal/cleanup"
+	"github.com/deploy103/qr-url-web/internal/config"
+	"github.com/deploy103/qr-url-web/internal/httpx"
+	"github.com/deploy103/qr-url-web/internal/qrfile"
+	"github.com/deploy103/qr-url-web/internal/store"
+	"github.com/deploy103/qr-url-web/web"
 )
 
 // Server holds the dependencies of the HTTP layer.

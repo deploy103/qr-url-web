@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/httpx"
+	"github.com/deploy103/qr-url-web/internal/httpx"
 )
 
 // Config holds every tunable of the service. Defaults are production sane:

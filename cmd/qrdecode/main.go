@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mvtp/qrurl/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
 )
 
 func main() {

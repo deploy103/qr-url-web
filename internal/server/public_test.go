@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
 )
 
 func TestHomePageAndHealth(t *testing.T) {

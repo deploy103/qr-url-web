@@ -24,12 +24,12 @@ import (
 
 	"golang.org/x/term"
 
-	"github.com/mvtp/qrurl/internal/auth"
-	"github.com/mvtp/qrurl/internal/cleanup"
-	"github.com/mvtp/qrurl/internal/config"
-	"github.com/mvtp/qrurl/internal/qrfile"
-	"github.com/mvtp/qrurl/internal/server"
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/auth"
+	"github.com/deploy103/qr-url-web/internal/cleanup"
+	"github.com/deploy103/qr-url-web/internal/config"
+	"github.com/deploy103/qr-url-web/internal/qrfile"
+	"github.com/deploy103/qr-url-web/internal/server"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 // version is stamped at build time with -ldflags "-X main.version=...".

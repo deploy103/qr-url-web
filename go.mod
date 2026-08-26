@@ -1,4 +1,4 @@
-module github.com/mvtp/qrurl
+module github.com/deploy103/qr-url-web
 
 go 1.27
 

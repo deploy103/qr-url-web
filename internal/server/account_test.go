@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/auth"
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/auth"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 func TestAccountOverview(t *testing.T) {

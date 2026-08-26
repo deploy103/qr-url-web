@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mvtp/qrurl/internal/qr"
-	"github.com/mvtp/qrurl/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
 )
 
 func encodePNG(t *testing.T, payload string, level qr.Level) []byte {

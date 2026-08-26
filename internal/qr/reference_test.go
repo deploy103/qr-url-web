@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/mvtp/qrurl/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qr"
 )
 
 // The fixtures in testdata were produced by segno 1.6.6, an unrelated

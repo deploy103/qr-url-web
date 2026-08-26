@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/qr"
-	"github.com/mvtp/qrurl/internal/qrdecode"
-	"github.com/mvtp/qrurl/internal/qrfile"
+	"github.com/deploy103/qr-url-web/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/qrfile"
 )
 
 func newStore(t *testing.T) *qrfile.Store {

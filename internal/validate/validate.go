@@ -11,7 +11,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/mvtp/qrurl/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qr"
 )
 
 // Limits applied to user supplied values.

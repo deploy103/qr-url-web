@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mvtp/qrurl/internal/qr"
-	"github.com/mvtp/qrurl/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
 )
 
 // TestPayloadIsStoredVerbatim is the requirement stated in the specification:

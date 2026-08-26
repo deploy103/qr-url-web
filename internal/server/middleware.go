@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/httpx"
+	"github.com/deploy103/qr-url-web/internal/httpx"
 )
 
 // contentSecurityPolicy is strict on purpose: no inline script, no inline

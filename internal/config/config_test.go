@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/config"
+	"github.com/deploy103/qr-url-web/internal/config"
 )
 
 func TestDefaults(t *testing.T) {

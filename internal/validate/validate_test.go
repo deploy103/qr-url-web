@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/validate"
+	"github.com/deploy103/qr-url-web/internal/validate"
 )
 
 func TestShortCode(t *testing.T) {

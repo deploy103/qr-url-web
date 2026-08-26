@@ -17,7 +17,7 @@ COPY . .
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \
     CGO_ENABLED=0 GOOS=linux go build -trimpath \
-      -ldflags "-s -w -X main.version=${VERSION} -X github.com/mvtp/qrurl/internal/server.BuildVersion=${VERSION}" \
+      -ldflags "-s -w -X main.version=${VERSION} -X github.com/deploy103/qr-url-web/internal/server.BuildVersion=${VERSION}" \
       -o /out/qrurl ./cmd/qrurl \
  && CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags "-s -w" \
       -o /out/qrdecode ./cmd/qrdecode

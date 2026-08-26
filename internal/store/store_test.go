@@ -12,7 +12,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 func newDB(t *testing.T) *store.DB {

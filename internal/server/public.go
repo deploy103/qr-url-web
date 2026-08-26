@@ -9,10 +9,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/httpx"
-	"github.com/mvtp/qrurl/internal/qr"
-	"github.com/mvtp/qrurl/internal/store"
-	"github.com/mvtp/qrurl/internal/validate"
+	"github.com/deploy103/qr-url-web/internal/httpx"
+	"github.com/deploy103/qr-url-web/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/store"
+	"github.com/deploy103/qr-url-web/internal/validate"
 )
 
 // codeRe is the exact shape of a short code path: three digits, never 000.

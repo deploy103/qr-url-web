@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/qrfile"
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/qrfile"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 // leaseDuration bounds how long a crashed run can block the next one.

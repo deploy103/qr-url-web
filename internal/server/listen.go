@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/config"
+	"github.com/deploy103/qr-url-web/internal/config"
 )
 
 // ListenAndServe runs the HTTP server until ctx is cancelled and then shuts it

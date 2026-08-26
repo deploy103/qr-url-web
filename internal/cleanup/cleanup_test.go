@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/cleanup"
-	"github.com/mvtp/qrurl/internal/qr"
-	"github.com/mvtp/qrurl/internal/qrfile"
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/cleanup"
+	"github.com/deploy103/qr-url-web/internal/qr"
+	"github.com/deploy103/qr-url-web/internal/qrfile"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 func quietLogger() *slog.Logger {

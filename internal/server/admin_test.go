@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mvtp/qrurl/internal/qrdecode"
-	"github.com/mvtp/qrurl/internal/store"
+	"github.com/deploy103/qr-url-web/internal/qrdecode"
+	"github.com/deploy103/qr-url-web/internal/store"
 )
 
 func TestAdminRequiresAuthentication(t *testing.T) {

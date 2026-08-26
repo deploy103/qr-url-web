@@ -1,7 +1,7 @@
 # QR Code generator + URL shortener
 
 BINARY      := qrurl
-MODULE      := github.com/mvtp/qrurl
+MODULE      := github.com/deploy103/qr-url-web
 DIST        := dist
 VERSION     ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS     := -s -w -X main.version=$(VERSION) -X $(MODULE)/internal/server.BuildVersion=$(VERSION)

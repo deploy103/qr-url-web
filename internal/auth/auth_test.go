@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mvtp/qrurl/internal/auth"
+	"github.com/deploy103/qr-url-web/internal/auth"
 )
 
 // fastParams keeps the tests quick without weakening what they check.
