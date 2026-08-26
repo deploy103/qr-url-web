@@ -7,6 +7,10 @@
 *.db-wal
 *.db-shm
 
+# internal working documents: never publish
+/AGENTS.md
+/요구사항.md
+
 # editors and OS noise
 .DS_Store
 *.swp
