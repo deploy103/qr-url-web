@@ -97,7 +97,11 @@
   preview.addEventListener('error', function () {
     preview.hidden = true;
     empty.hidden = true;
-    error.textContent = 'QR을 만들지 못했습니다. 내용이 너무 길거나 형식이 올바르지 않습니다.';
+    pngLink.setAttribute('aria-disabled', 'true');
+    svgLink.setAttribute('aria-disabled', 'true');
+    pngLink.removeAttribute('href');
+    svgLink.removeAttribute('href');
+    error.textContent = 'QR 미리보기를 불러오지 못했습니다. 입력 내용이나 설정을 변경해 다시 시도해 주세요.';
     error.hidden = false;
   });
 
